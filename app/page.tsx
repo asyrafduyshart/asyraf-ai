@@ -256,7 +256,7 @@ function About() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-ochre-wash">
               <Image
                 src="/about-sketch.png"
-                alt="Sketchbook page — Jakarta travel illustration from blog.asyraf.ai"
+                alt="Sketchbook woodcut portrait of Asyraf from blog.asyraf.ai"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 90vw, 360px"
@@ -264,7 +264,7 @@ function About() {
             </div>
           </div>
           <p className="mt-3 text-center font-sketch text-lg text-ink-mute">
-            from the sketchbook — Jakarta, where chaos learns to breathe
+            from the sketchbook — woodcut self-portrait
           </p>
         </div>
       </div>
