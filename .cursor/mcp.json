@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "beui-pro": {
+      "url": "https://mcp.beui.dev/pro/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:BEUI_PRO_TOKEN}"
+      }
+    }
+  }
+}
