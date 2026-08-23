@@ -1,0 +1,51 @@
+import type { Metadata } from "next";
+import { Instrument_Serif, Source_Sans_3, Caveat } from "next/font/google";
+import "./globals.css";
+
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const sans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const sketch = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-sketch",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Asyraf Duyshart — asyraf.ai",
+  description:
+    "Roast tools. Ship anyway. Building jualan.ai with Imaji. Designer, developer, and AI builder from Jakarta.",
+  metadataBase: new URL("https://asyraf.ai"),
+  openGraph: {
+    title: "Asyraf Duyshart — asyraf.ai",
+    description:
+      "Roast tools. Ship anyway. Building jualan.ai with Imaji from Jakarta.",
+    url: "https://asyraf.ai",
+    siteName: "asyraf.ai",
+    type: "website",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${sketch.variable}`}>
+      <body className="font-sans paper-texture min-h-screen">{children}</body>
+    </html>
+  );
+}
