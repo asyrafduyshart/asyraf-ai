@@ -54,7 +54,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable} ${sketch.variable}`}>
-      <body className="font-sans paper-texture min-h-screen">{children}</body>
+      <body className="font-sans paper-texture min-h-screen">
+        {/* Tags <html> so scroll-reveal hiding only happens when JS runs. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js');",
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

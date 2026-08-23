@@ -47,6 +47,8 @@ const config: Config = {
       animation: {
         "fade-up": "fadeUp 0.8s ease-out forwards",
         "fade-in": "fadeIn 1s ease-out forwards",
+        "fade-in-soft": "fadeIn 0.3s ease-out forwards",
+        "pop-in": "popIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards",
       },
       keyframes: {
         fadeUp: {
@@ -56,6 +58,10 @@ const config: Config = {
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
+        },
+        popIn: {
+          "0%": { opacity: "0", transform: "scale(0.965) translateY(10px)" },
+          "100%": { opacity: "1", transform: "scale(1) translateY(0)" },
         },
       },
     },
