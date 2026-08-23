@@ -13,15 +13,19 @@ const projects = [
     name: "jualan.ai",
     href: "https://jualan.ai",
     blurb:
-      "AI for selling — the unglamorous kind. Helping merchants move product without the hype tax.",
+      "Toko online AI untuk seller Indonesia — katalog, pembayaran lokal, pesanan, dan kopilot berbahasa Indonesia.",
     tag: "Building",
+    image: "/shots/jualan-home.png",
+    imageAlt: "Latest jualan.ai homepage",
   },
   {
     name: "Imaji",
     href: "https://imajinyata.com",
     blurb:
-      "Studio partner at imajinyata.com. Design and product craft beside the shipping.",
+      "Tekno Imaji Nyata — AI-native products for events (Hosteria), commerce (jualan.ai), and F&B (Saji). Skobar cooking.",
     tag: "With Imaji",
+    image: "/shots/imajinyata-home.png",
+    imageAlt: "Latest imajinyata.com homepage",
   },
 ];
 
@@ -223,20 +227,31 @@ function Building() {
             href={p.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="card-quiet group block p-7 transition hover:-translate-y-0.5 hover:border-ochre/35"
+            className="card-quiet group block overflow-hidden transition hover:-translate-y-0.5 hover:border-ochre/35"
           >
-            <div className="flex items-center justify-between gap-3">
-              <h3 className="font-serif text-2xl text-ink md:text-3xl">
-                {p.name}
-              </h3>
-              <span className="rounded-full bg-ochre-wash px-3 py-1 text-xs font-semibold tracking-wide text-ochre-deep">
-                {p.tag}
-              </span>
+            <div className="relative aspect-[16/10] w-full border-b border-ink-faint/40 bg-paper-soft">
+              <Image
+                src={p.image}
+                alt={p.imageAlt}
+                fill
+                className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+                sizes="(max-width: 768px) 100vw, 480px"
+              />
             </div>
-            <p className="mt-4 leading-relaxed text-ink-soft">{p.blurb}</p>
-            <p className="mt-6 text-sm font-medium text-ochre-deep transition group-hover:translate-x-0.5">
-              Visit {p.name.replace(".ai", "")} →
-            </p>
+            <div className="p-7">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="font-serif text-2xl text-ink md:text-3xl">
+                  {p.name}
+                </h3>
+                <span className="rounded-full bg-ochre-wash px-3 py-1 text-xs font-semibold tracking-wide text-ochre-deep">
+                  {p.tag}
+                </span>
+              </div>
+              <p className="mt-4 leading-relaxed text-ink-soft">{p.blurb}</p>
+              <p className="mt-6 text-sm font-medium text-ochre-deep transition group-hover:translate-x-0.5">
+                Visit {p.name} →
+              </p>
+            </div>
           </a>
         ))}
       </div>
