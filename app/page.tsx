@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import Reveal from "@/components/Reveal";
 import SketchUnderline from "@/components/SketchUnderline";
 import Tape from "@/components/Tape";
+import Wordmark from "@/components/Wordmark";
 
 const lanes = [
   { title: "AI", note: "Tools that amplify judgment — not replace it." },
@@ -175,9 +176,10 @@ function Nav() {
       <div className="flex items-center justify-between">
         <Link
           href="/"
-          className="font-serif text-2xl tracking-tight text-ink md:text-[1.7rem]"
+          aria-label="asyraf.ai home"
+          className="group text-2xl md:text-[1.7rem]"
         >
-          asyraf<span className="text-ochre">.ai</span>
+          <Wordmark />
         </Link>
         <nav
           aria-label="Primary"
@@ -751,7 +753,13 @@ function Footer() {
     <footer className="mx-auto max-w-5xl border-t border-ink-faint/70 px-6 py-10 md:px-8">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="font-serif text-xl text-ink">asyraf.ai</p>
+          <Link
+            href="/"
+            aria-label="asyraf.ai home"
+            className="group inline-block text-xl"
+          >
+            <Wordmark />
+          </Link>
           <p className="mt-1 max-w-xs text-sm leading-relaxed text-ink-mute">
             Personal site for Asyraf Duyshart. Jakarta. Roast tools. Ship
             anyway.
