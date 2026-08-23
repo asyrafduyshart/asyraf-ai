@@ -1,0 +1,50 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "asyraf-ai",
+  "main": ".open-next/worker.js",
+
+  // Asyraf personal Cloudflare account.
+  "account_id": "d845f80440b40d0a0986aec75a812419",
+
+  "compatibility_date": "2026-08-23",
+  "compatibility_flags": [
+    // Node.js APIs for Next.js (default for compat dates >= 2026-08-04,
+    // kept explicit so lowering the date never silently breaks the worker).
+    "nodejs_compat",
+    // Only allow fetch() to public URLs.
+    "global_fetch_strictly_public"
+  ],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "asyraf-ai"
+    }
+  ],
+
+  // Optimize next/image through Cloudflare Images.
+  "images": {
+    "binding": "IMAGES"
+  },
+
+  // Production domain. Requires the asyraf.ai zone to exist on this account —
+  // comment this block out for a first smoke-test deploy without the domain.
+  "routes": [
+    {
+      "pattern": "asyraf.ai",
+      "custom_domain": true
+    }
+  ],
+
+  // Serve only on asyraf.ai; flip to true to smoke-test on *.workers.dev.
+  "workers_dev": false,
+
+  "observability": {
+    "enabled": true
+  }
+}
