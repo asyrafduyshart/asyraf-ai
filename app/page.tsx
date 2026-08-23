@@ -116,6 +116,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <About />
+      <SketchbookStrip />
       <Building />
       <Lanes />
       <Closing />
@@ -162,7 +163,7 @@ function Hero() {
       <div className="relative overflow-hidden rounded-[1.75rem] border border-ink-faint/50 bg-paper-warm shadow-page">
         <div className="absolute inset-0">
           <Image
-            src="/hero-sketch.png"
+            src="/sketchbook/desk-notebook.jpg"
             alt=""
             fill
             priority
@@ -254,16 +255,16 @@ function About() {
           <div className="card-quiet overflow-hidden p-3">
             <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-ochre-wash">
               <Image
-                src="/asyraf-portrait.jpg"
-                alt="Asyraf Duyshart"
+                src="/about-sketch.png"
+                alt="Sketchbook page — Jakarta travel illustration from blog.asyraf.ai"
                 fill
-                className="object-cover object-[center_20%] saturate-[0.92] contrast-[1.02]"
+                className="object-cover object-center"
                 sizes="(max-width: 768px) 90vw, 360px"
               />
             </div>
           </div>
           <p className="mt-3 text-center font-sketch text-lg text-ink-mute">
-            asyraf, somewhere between coffee and a deploy
+            from the sketchbook — Jakarta, where chaos learns to breathe
           </p>
         </div>
       </div>
@@ -334,6 +335,60 @@ function ShotStack({
         {caption}
       </figcaption>
     </figure>
+  );
+}
+
+
+const sketchPages = [
+  { src: "/sketchbook/jakarta.png", label: "Jakarta" },
+  { src: "/sketchbook/yogyakarta.png", label: "Yogyakarta" },
+  { src: "/sketchbook/ubud.png", label: "Ubud" },
+  { src: "/sketchbook/bangkok.png", label: "Bangkok" },
+  { src: "/sketchbook/kuala-lumpur.png", label: "Kuala Lumpur" },
+  { src: "/sketchbook/ho-chi-minh.png", label: "Ho Chi Minh" },
+];
+
+function SketchbookStrip() {
+  return (
+    <section className="mx-auto max-w-5xl px-6 py-8 md:px-8 md:py-10">
+      <div className="mb-6 flex items-end justify-between gap-4">
+        <div>
+          <p className="font-sketch text-xl text-ochre-deep md:text-2xl">Sketchbook</p>
+          <h2 className="mt-1 font-serif text-3xl tracking-tight text-ink md:text-4xl">
+            Pages from the road
+          </h2>
+        </div>
+        <a
+          href="https://blog.asyraf.ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden text-sm font-medium text-ochre-deep underline decoration-ochre/30 underline-offset-4 transition hover:decoration-ochre sm:inline"
+        >
+          blog.asyraf.ai →
+        </a>
+      </div>
+      <div className="flex gap-4 overflow-x-auto pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {sketchPages.map((page) => (
+          <figure
+            key={page.label}
+            className="card-quiet w-[11.5rem] shrink-0 overflow-hidden sm:w-[13rem]"
+          >
+            <div className="relative aspect-[3/4] bg-ochre-wash/30">
+              <Image
+                src={page.src}
+                alt={`Sketchbook — ${page.label}`}
+                fill
+                className="object-cover"
+                sizes="208px"
+              />
+            </div>
+            <figcaption className="px-3 py-2.5 font-sketch text-base text-ink-mute">
+              {page.label}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
   );
 }
 
