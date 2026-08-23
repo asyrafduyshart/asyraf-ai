@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Fragment } from "react";
 import Reveal from "@/components/Reveal";
 import SketchUnderline from "@/components/SketchUnderline";
-import SketchbookStrip from "@/components/SketchbookStrip";
 import Tape from "@/components/Tape";
 
 const lanes = [
@@ -150,7 +149,6 @@ export default function Home() {
       <Nav />
       <Hero />
       <About />
-      <SketchbookSection />
       <JournalDivider
         src="/section-desk.png"
         alt="Watercolor sketch of a desk — lamp, open notebook, coffee"
@@ -342,35 +340,6 @@ function About() {
           </p>
         </Reveal>
       </div>
-    </section>
-  );
-}
-
-function SketchbookSection() {
-  return (
-    <section className="mx-auto max-w-5xl px-6 py-8 md:px-8 md:py-10">
-      <Reveal>
-        <div className="mb-5 flex items-end justify-between gap-4">
-          <div>
-            <p className="font-sketch text-lg text-ochre-deep md:text-xl">Sketchbook</p>
-            <h2 className="mt-1 font-serif text-3xl tracking-tight text-ink md:text-4xl">
-              Pages from the road
-            </h2>
-            <SketchUnderline className="mt-2 w-36" />
-          </div>
-          <a
-            href="https://blog.asyraf.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden text-sm font-medium text-ochre-deep underline decoration-ochre/30 underline-offset-4 transition hover:decoration-ochre sm:inline"
-          >
-            blog.asyraf.ai →
-          </a>
-        </div>
-      </Reveal>
-      <Reveal delay={100}>
-        <SketchbookStrip />
-      </Reveal>
     </section>
   );
 }
