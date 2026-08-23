@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Source_Sans_3, Caveat } from "next/font/google";
+import { Fraunces, Karla, Architects_Daughter } from "next/font/google";
 import "./globals.css";
 
-const serif = Instrument_Serif({
+const serif = Fraunces({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "600", "700"],
   variable: "--font-serif",
   display: "swap",
 });
 
-const sans = Source_Sans_3({
+const sans = Karla({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const sketch = Caveat({
+const sketch = Architects_Daughter({
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: "400",
   variable: "--font-sketch",
   display: "swap",
 });
@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     url: "https://asyraf.ai",
     siteName: "asyraf.ai",
     type: "website",
-    images: [{ url: "/hero-sketch.png", width: 1536, height: 1024 }],
+    images: [{ url: "/sketchbook/desk-notebook.jpg", width: 1376, height: 768 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Asyraf Duyshart — asyraf.ai",
     description:
       "Roast tools. Ship anyway. Building jualan.ai with Imaji from Jakarta.",
-    images: ["/hero-sketch.png"],
+    images: ["/sketchbook/desk-notebook.jpg"],
   },
 };
 

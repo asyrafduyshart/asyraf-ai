@@ -87,3 +87,13 @@ body {
   stroke-dasharray: 240;
   animation: drawIn 1.4s ease forwards;
 }
+
+.font-serif {
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  letter-spacing: -0.02em;
+}
+
+.font-sketch {
+  letter-spacing: 0.01em;
+}
