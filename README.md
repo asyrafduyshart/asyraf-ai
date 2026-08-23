@@ -41,4 +41,4 @@ For a smoke-test deploy before the domain is ready, comment out the `routes` blo
 
 - `next/image` is optimized through the [Cloudflare Images binding](https://opennext.js.org/cloudflare/howtos/image) (`"images"` in `wrangler.jsonc`); unsupported cases fall back to the original file.
 - `public/_headers` marks `/_next/static/*` as immutable for CDN caching.
-- Homepage screenshots for the Building section live in `public/shots/` (`jualan-home.png`, `imajinyata-home.png`, 16:10). Current files are placeholders — drop in real screenshots with the same names to update the site.
+- The Building section reads its screenshots from `public/shots/` (16:10): `jualan-home.png` + `jualan-product.png` and `imajinyata-home.png` + `imajinyata-products.png`. To refresh them, overwrite the files with new captures at the same names.

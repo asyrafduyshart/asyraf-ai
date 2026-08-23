@@ -8,6 +8,16 @@ const lanes = [
   { title: "Startup Indonesia", note: "From Jakarta, for operators who still touch the work." },
 ];
 
+type Shot = { src: string; alt: string };
+
+type RosterItem = {
+  name: string;
+  lane: string;
+  href?: string;
+  domain?: string;
+  badge?: string;
+};
+
 type Project = {
   index: string;
   name: string;
@@ -15,10 +25,13 @@ type Project = {
   tag: string;
   href: string;
   domain: string;
-  shot: string;
-  shotAlt: string;
+  primary: Shot;
+  secondary: Shot;
   caption: string;
   body: string[];
+  roster?: RosterItem[];
+  rosterLabel?: string;
+  postscript?: string;
   colophon: string;
 };
 
@@ -30,14 +43,21 @@ const projects: Project[] = [
     tag: "Building",
     href: "https://jualan.ai",
     domain: "jualan.ai",
-    shot: "/shots/jualan-home.png",
-    shotAlt: "Latest jualan.ai homepage",
-    caption: "the latest homepage, warts and all",
+    primary: {
+      src: "/shots/jualan-home.png",
+      alt: "jualan.ai homepage — satu platform untuk semua solusi penjualan",
+    },
+    secondary: {
+      src: "/shots/jualan-product.png",
+      alt: "jualan.ai design toko — build a store website without coding",
+    },
+    caption: "the homepage, and the no-code store builder",
     body: [
-      "An AI online store for sellers in Indonesia — katalog, pembayaran lokal, pesanan, and an AI copilot that answers in Bahasa Indonesia.",
-      "It also minds the money: laba, arus kas, HPP. The unglamorous parts of selling, which is exactly the point.",
+      "One platform for the whole selling operation — produk, pesanan, pembayaran, pengiriman, pelanggan — plus an AI copilot that answers in Bahasa Indonesia.",
+      "Sellers build the storefront without code: pick a template, change it by chat, put it on their own domain. And it minds the money — laba, arus kas, HPP.",
+      "The unglamorous parts of selling, which is exactly the point.",
     ],
-    colophon: "Toko online AI untuk seller Indonesia.",
+    colophon: "Toko online AI untuk seller Indonesia · waitlist open.",
   },
   {
     index: "entry 02",
@@ -46,13 +66,46 @@ const projects: Project[] = [
     tag: "The studio",
     href: "https://imajinyata.com",
     domain: "imajinyata.com",
-    shot: "/shots/imajinyata-home.png",
-    shotAlt: "Latest imajinyata.com homepage",
-    caption: "the studio's front door",
+    primary: {
+      src: "/shots/imajinyata-home.png",
+      alt: "imajinyata.com homepage — reality is a canvas, Imajination is the ink",
+    },
+    secondary: {
+      src: "/shots/imajinyata-products.png",
+      alt: "imajinyata.com products — Hosteria, the best way to run your events",
+    },
+    caption: "the front door, and the product shelf",
     body: [
       "The AI-native studio I build with. Their words: \u201cAI is not a feature. It\u2019s our foundation.\u201d For once, a slogan that\u2019s also true of the codebase.",
-      "Commerce, events, F&B — Saji, Jualan, and the new one, Hosteria — on an in-house suite with names like a family gathering: Biya, Gede, Prasa, Arum, Yona, Julia.",
     ],
+    rosterLabel: "the product shelf",
+    roster: [
+      {
+        name: "Hosteria",
+        lane: "events",
+        href: "https://hosteria.app",
+        domain: "hosteria.app",
+        badge: "New",
+      },
+      {
+        name: "Jualan.ai",
+        lane: "commerce",
+        href: "https://jualan.ai",
+        domain: "jualan.ai",
+      },
+      {
+        name: "Saji",
+        lane: "F&B",
+        href: "https://saji.site",
+        domain: "saji.site",
+      },
+      {
+        name: "Skobar",
+        lane: "coming soon",
+      },
+    ],
+    postscript:
+      "All of it on an in-house suite with names like a family gathering: Biya, Gede, Prasa, Arum, Yona, Julia.",
     colophon: "Runs on Cloudflare · KrakenD · Ornith · GitHub · Notion.",
   },
 ];
@@ -218,12 +271,15 @@ function About() {
   );
 }
 
-function BrowserFrame({
-  shot,
-  shotAlt,
+function ShotStack({
+  primary,
+  secondary,
   domain,
   caption,
-}: Pick<Project, "shot" | "shotAlt" | "domain" | "caption">) {
+  flip,
+}: Pick<Project, "primary" | "secondary" | "domain" | "caption"> & {
+  flip?: boolean;
+}) {
   return (
     <figure>
       <div className="card-quiet overflow-hidden">
@@ -240,15 +296,41 @@ function BrowserFrame({
         </div>
         <div className="relative aspect-[16/10] bg-ochre-wash/40">
           <Image
-            src={shot}
-            alt={shotAlt}
+            src={primary.src}
+            alt={primary.alt}
             fill
-            className="object-cover object-top"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, 560px"
           />
         </div>
       </div>
-      <figcaption className="mt-3 text-center font-sketch text-lg text-ink-mute">
+
+      {/* Second shot, dropped on top like a photo taped into a journal. */}
+      <div
+        className={`relative z-10 -mt-12 w-[58%] sm:-mt-16 ${
+          flip
+            ? "mr-auto ml-3 -rotate-[1.5deg] sm:ml-5"
+            : "ml-auto mr-3 rotate-[1.5deg] sm:mr-5"
+        }`}
+      >
+        <div className="relative rounded-xl border border-ink-faint/60 bg-paper-card p-1.5 shadow-page">
+          <span
+            aria-hidden
+            className="absolute -top-2 left-1/2 h-4 w-14 -translate-x-1/2 -rotate-3 rounded-[3px] border border-ochre/20 bg-ochre-wash/80"
+          />
+          <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
+            <Image
+              src={secondary.src}
+              alt={secondary.alt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 58vw, 330px"
+            />
+          </div>
+        </div>
+      </div>
+
+      <figcaption className="mt-4 text-center font-sketch text-lg text-ink-mute">
         {caption}
       </figcaption>
     </figure>
@@ -267,22 +349,23 @@ function Building() {
         </div>
         <p className="max-w-sm text-pretty text-ink-soft">
           Two entries, kept honest — the store I&apos;m building, and the studio
-          I build it with. Screenshots straight from the homepages.
+          I build it with. Screenshots straight from the sites.
         </p>
       </div>
 
-      <div className="space-y-12 md:space-y-16">
+      <div className="space-y-14 md:space-y-20">
         {projects.map((p, i) => (
           <article
             key={p.name}
-            className="grid items-center gap-8 md:grid-cols-[1.05fr_0.95fr] md:gap-12"
+            className="grid items-center gap-9 md:grid-cols-[1.05fr_0.95fr] md:gap-12"
           >
             <div className={i % 2 === 1 ? "md:order-2" : undefined}>
-              <BrowserFrame
-                shot={p.shot}
-                shotAlt={p.shotAlt}
+              <ShotStack
+                primary={p.primary}
+                secondary={p.secondary}
                 domain={p.domain}
                 caption={p.caption}
+                flip={i % 2 === 1}
               />
             </div>
 
@@ -302,6 +385,51 @@ function Building() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+
+              {p.roster && (
+                <div className="mt-5">
+                  <p className="font-sketch text-lg text-ochre-deep">
+                    {p.rosterLabel}
+                  </p>
+                  <ul className="mt-1 divide-y divide-dashed divide-ink-faint/60">
+                    {p.roster.map((r) => (
+                      <li
+                        key={r.name}
+                        className="flex flex-wrap items-baseline gap-x-2.5 py-2.5"
+                      >
+                        <span className="font-serif text-lg text-ink">
+                          {r.name}
+                        </span>
+                        {r.badge && (
+                          <span className="rounded-full bg-ochre-wash px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider text-ochre-deep">
+                            {r.badge}
+                          </span>
+                        )}
+                        <span className="text-sm text-ink-soft">
+                          — {r.lane}
+                        </span>
+                        {r.href && r.domain && (
+                          <a
+                            href={r.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-auto text-sm text-ink-mute underline decoration-ochre/30 underline-offset-4 transition hover:text-ochre-deep hover:decoration-ochre"
+                          >
+                            {r.domain}
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {p.postscript && (
+                <p className="mt-4 text-pretty leading-relaxed text-ink-soft">
+                  {p.postscript}
+                </p>
+              )}
+
               <p className="mt-4 border-t border-dashed border-ink-faint/70 pt-3 text-sm text-ink-mute">
                 {p.colophon}
               </p>
