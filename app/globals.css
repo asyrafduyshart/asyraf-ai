@@ -74,6 +74,7 @@ button {
 
 .skip-link:focus {
   transform: translateY(0);
+  transition: none;
 }
 
 .eyebrow {
@@ -191,8 +192,14 @@ button {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(250, 246, 239, 0.6), rgba(250, 246, 239, 0.12) 62%),
-    linear-gradient(0deg, rgba(250, 246, 239, 0.42), transparent 45%);
+    linear-gradient(90deg, rgba(250, 246, 239, 0.68), rgba(250, 246, 239, 0.48) 70%),
+    linear-gradient(
+      0deg,
+      rgba(250, 246, 239, 0.9),
+      rgba(250, 246, 239, 0.76) 30%,
+      rgba(250, 246, 239, 0.42) 58%,
+      rgba(250, 246, 239, 0.64)
+    );
 }
 
 .hero-content {
@@ -806,16 +813,24 @@ button {
   bottom: 0;
 }
 
+.ink-section .eyebrow,
+.ink-section .margin-note {
+  color: #d4926a;
+}
+
 .lane-list {
   border-top: 1px solid rgba(250, 246, 239, 0.45);
 }
 
-.lane-list li {
+.lane-list > li {
+  border-bottom: 1px dashed rgba(250, 246, 239, 0.28);
+}
+
+.lane-row {
   display: grid;
   grid-template-columns: 3.2rem minmax(8rem, 0.65fr) minmax(0, 1.35fr);
   align-items: baseline;
   gap: 1.25rem;
-  border-bottom: 1px dashed rgba(250, 246, 239, 0.28);
   padding-block: 1.45rem;
 }
 
@@ -1092,6 +1107,13 @@ button {
   transform: none;
 }
 
+.js .reveal:focus-within {
+  opacity: 1;
+  clip-path: none;
+  transform: none;
+  transition: none;
+}
+
 .js .reveal .sketch-stroke {
   opacity: 0.2;
   stroke-dashoffset: 240;
@@ -1173,7 +1195,7 @@ button {
     min-height: 16rem;
   }
 
-  .lane-list li {
+  .lane-row {
     grid-template-columns: 2.5rem minmax(0, 1fr);
     gap: 0.75rem;
   }
@@ -1221,6 +1243,22 @@ button {
 }
 
 @media (max-width: 639px) {
+  .section-nav {
+    padding-inline: 1rem;
+  }
+
+  .section-nav-label {
+    display: none;
+  }
+
+  .section-nav-link + .section-nav-link {
+    margin-left: 1.3rem;
+  }
+
+  .section-nav-link + .section-nav-link::before {
+    left: -0.75rem;
+  }
+
   .hero-cover,
   .hero-content {
     min-height: 45rem;
@@ -1232,7 +1270,7 @@ button {
   }
 
   .hero-wash {
-    background: rgba(250, 246, 239, 0.48);
+    background: rgba(250, 246, 239, 0.72);
   }
 
   .hero-content {

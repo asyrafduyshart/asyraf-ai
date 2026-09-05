@@ -182,7 +182,9 @@ function Outbound({
       target="_blank"
       rel="noopener noreferrer"
       className={className}
-      aria-label={ariaLabel}
+      aria-label={
+        ariaLabel ? `${ariaLabel} (opens in a new tab)` : undefined
+      }
     >
       {children}
       <span className="sr-only"> (opens in a new tab)</span>
@@ -232,7 +234,6 @@ function Nav() {
         <Outbound
           href="https://x.com/asyrafduyshart"
           className="masthead-link"
-          ariaLabel="Follow Asyraf Duyshart on X"
         >
           @asyrafduyshart <span aria-hidden>↗</span>
         </Outbound>
@@ -611,7 +612,7 @@ function Building() {
               </p>
             </div>
 
-            <div className="blueprint-blank" aria-label="Skobar screenshot pending">
+            <div className="blueprint-blank">
               <span className="blueprint-cross blueprint-cross-tl" aria-hidden />
               <span className="blueprint-cross blueprint-cross-br" aria-hidden />
               <p className="font-sketch text-2xl text-ink-soft">screenshot pending</p>
@@ -649,15 +650,17 @@ function Lanes() {
 
           <ol className="lane-list md:col-span-8">
             {lanes.map((lane, index) => (
-              <Reveal key={lane.title} delay={index * 70} variant="page-right">
-                <li>
-                  <span className="lane-index" aria-hidden>
-                    {lane.index}
-                  </span>
-                  <h3>{lane.title}</h3>
-                  <p>{lane.note}</p>
-                </li>
-              </Reveal>
+              <li key={lane.title}>
+                <Reveal delay={index * 70} variant="page-right">
+                  <div className="lane-row">
+                    <span className="lane-index" aria-hidden>
+                      {lane.index}
+                    </span>
+                    <h3>{lane.title}</h3>
+                    <p>{lane.note}</p>
+                  </div>
+                </Reveal>
+              </li>
             ))}
           </ol>
         </div>
@@ -755,12 +758,14 @@ function Writing() {
         </article>
       </Reveal>
 
-      <ol className="writing-ledger">
+      <ol className="writing-ledger" start={2}>
         {moreNotes.map((note, index) => (
           <li key={note.href}>
             <Reveal variant="page-left">
               <article>
-                <p className="writing-number">0{index + 2}</p>
+                <p className="writing-number" aria-hidden>
+                  0{index + 2}
+                </p>
                 <div>
                   <p className="eyebrow">{note.meta}</p>
                   <h3 className="mt-2 font-serif text-2xl leading-tight text-ink md:text-3xl">
