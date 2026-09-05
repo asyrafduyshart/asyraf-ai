@@ -202,6 +202,10 @@ button {
     );
 }
 
+.hero-cover .eyebrow {
+  color: #514942;
+}
+
 .hero-content {
   position: relative;
   z-index: 2;

@@ -41,15 +41,19 @@ type Shot = {
   alt: string;
 };
 
-type RosterItem = {
+type RosterItemBase = {
   name: string;
   lane: string;
-  href?: string;
-  domain?: string;
   badge?: string;
 };
 
-type Project = {
+type RosterItem = RosterItemBase &
+  (
+    | { href: string; domain: string }
+    | { href?: never; domain?: never }
+  );
+
+type ProjectCore = {
   index: string;
   status: string;
   name: string;
@@ -62,10 +66,14 @@ type Project = {
   body: string[];
   colophon: string;
   align: "left" | "right";
-  roster?: RosterItem[];
-  rosterLabel?: string;
   postscript?: string;
 };
+
+type Project = ProjectCore &
+  (
+    | { roster: RosterItem[]; rosterLabel: string }
+    | { roster?: never; rosterLabel?: never }
+  );
 
 const projects: Project[] = [
   {
@@ -144,6 +152,13 @@ const projects: Project[] = [
   },
 ];
 
+type FieldNote = {
+  title: string;
+  note: string;
+  href: string;
+  meta: string;
+};
+
 const fieldNotes = [
   {
     title: "Kenapa Banyak Orang Suka Hidup dalam ‘Hard Mode’",
@@ -163,7 +178,7 @@ const fieldNotes = [
     href: "https://blog.asyraf.ai/7-bookmark-x-yang-layak-diingat",
     meta: "Bookmark notes · 3 menit",
   },
-];
+] as const satisfies readonly [FieldNote, ...FieldNote[]];
 
 function Outbound({
   href,
@@ -763,9 +778,7 @@ function Writing() {
           <li key={note.href}>
             <Reveal variant="page-left">
               <article>
-                <p className="writing-number" aria-hidden>
-                  0{index + 2}
-                </p>
+                <p className="writing-number">0{index + 2}</p>
                 <div>
                   <p className="eyebrow">{note.meta}</p>
                   <h3 className="mt-2 font-serif text-2xl leading-tight text-ink md:text-3xl">
