@@ -26,13 +26,13 @@ const sketch = Architects_Daughter({
 export const metadata: Metadata = {
   title: "Asyraf Duyshart — asyraf.ai",
   description:
-    "Roast tools. Ship anyway. Building jualan.ai with Imaji. Designer, developer, and AI builder from Jakarta.",
+    "Roast tools. Ship anyway. Building jualan.ai with Imaji. Designer, developer, and AI builder from BSD.",
   metadataBase: new URL("https://asyraf.ai"),
   alternates: { canonical: "/" },
   openGraph: {
     title: "Asyraf Duyshart — asyraf.ai",
     description:
-      "Roast tools. Ship anyway. Building jualan.ai with Imaji from Jakarta.",
+      "Roast tools. Ship anyway. Building jualan.ai with Imaji from BSD.",
     url: "https://asyraf.ai",
     siteName: "asyraf.ai",
     type: "website",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Asyraf Duyshart — asyraf.ai",
     description:
-      "Roast tools. Ship anyway. Building jualan.ai with Imaji from Jakarta.",
+      "Roast tools. Ship anyway. Building jualan.ai with Imaji from BSD.",
     images: ["/hero-sketch.png"],
   },
 };

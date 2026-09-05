@@ -32,7 +32,7 @@ const lanes = [
   {
     index: "04",
     title: "Startup Indonesia",
-    note: "Built from Jakarta, for operators who still touch the work.",
+    note: "Built from BSD, for operators who still touch the work.",
   },
 ];
 
@@ -243,7 +243,7 @@ function Nav() {
 
         <p className="hidden items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-ink-mute md:flex">
           <span className="h-px w-8 bg-ochre" aria-hidden />
-          Personal field journal · Jakarta
+          Personal field journal · BSD
         </p>
 
         <Outbound
@@ -303,7 +303,7 @@ function Hero() {
             <p className="hidden text-right font-sketch text-sm leading-snug text-ink-soft opacity-0 animate-fade-in [animation-delay:120ms] sm:block">
               notes from 06° south
               <br />
-              shipped from Jakarta
+              shipped from BSD
             </p>
           </div>
 
@@ -828,7 +828,7 @@ function Closing() {
           <div className="postcard-address">
             <div className="postal-stamp" aria-hidden>
               <span>asyraf.ai</span>
-              <strong>JAKARTA</strong>
+              <strong>BSD</strong>
               <small>06°12′S</small>
             </div>
             <dl>
@@ -866,7 +866,7 @@ function Footer() {
               <Wordmark />
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink-soft">
-              Personal field journal for Asyraf Duyshart. Jakarta. Roast tools.
+              Personal field journal for Asyraf Duyshart. BSD. Roast tools.
               Ship anyway.
             </p>
           </div>
