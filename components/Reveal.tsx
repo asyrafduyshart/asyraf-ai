@@ -7,14 +7,21 @@ type RevealProps = {
   className?: string;
   /** Entrance delay in milliseconds, for gentle staggering. */
   delay?: number;
+  /** Direction for the subtle page-settling entrance. */
+  variant?: "up" | "page-left" | "page-right";
 };
 
 /**
- * Scroll-triggered fade-up. The hidden state is only applied when JS is
- * present (`.js` on <html>), so content stays visible without JavaScript,
- * and `prefers-reduced-motion` short-circuits straight to the final state.
+ * Scroll-triggered page reveal. The hidden state is only applied when JS is
+ * present (`.js` on <html>), so content stays visible without JavaScript.
+ * Reduced-motion visitors immediately get the final, still composition.
  */
-export default function Reveal({ children, className = "", delay = 0 }: RevealProps) {
+export default function Reveal({
+  children,
+  className = "",
+  delay = 0,
+  variant = "up",
+}: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -45,7 +52,7 @@ export default function Reveal({ children, className = "", delay = 0 }: RevealPr
   return (
     <div
       ref={ref}
-      className={`reveal ${className}`.trim()}
+      className={`reveal reveal-${variant} ${className}`.trim()}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

@@ -17,7 +17,7 @@ const config: Config = {
         ink: {
           DEFAULT: "#2a2420",
           soft: "#5c534c",
-          mute: "#8a8076",
+          mute: "#71675f",
           faint: "#c4b8ab",
         },
         ochre: {
