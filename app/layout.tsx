@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     url: "https://asyraf.ai",
     siteName: "asyraf.ai",
     type: "website",
-    images: [{ url: "/sketchbook/desk-notebook.jpg", width: 1376, height: 768 }],
+    images: [{ url: "/hero-sketch.png", width: 819, height: 546 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Asyraf Duyshart — asyraf.ai",
     description:
       "Roast tools. Ship anyway. Building jualan.ai with Imaji from Jakarta.",
-    images: ["/sketchbook/desk-notebook.jpg"],
+    images: ["/hero-sketch.png"],
   },
 };
 
@@ -53,7 +53,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${sketch.variable}`}>
+    <html
+      lang="en"
+      className={`${serif.variable} ${sans.variable} ${sketch.variable}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans paper-texture min-h-screen">
         {/* Tags <html> so scroll-reveal hiding only happens when JS runs. */}
         <script
